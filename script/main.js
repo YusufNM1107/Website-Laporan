@@ -160,12 +160,21 @@ function convertTableToText() {
     });
 
     let allDataText = "";
+    let currentShift = "";
 
     rows.forEach(row => {
+        const shift = row.children[2].textContent.trim();
+        if (shift !== currentShift) {
+            if (currentShift !== "") {
+                allDataText += "\n"; 
+            }
+            allDataText += `${shift}\n\n`;
+            currentShift = shift;
+        }
+
         const cells = row.querySelectorAll("td");
         const dataText = `Nama: ${cells[0].textContent}
                         \nJabatan: ${cells[1].textContent}
-                        \nShift: ${cells[2].textContent}
                         \nTarget Penjualan: ${cells[3].textContent}
                         \nTarget Testimoni: ${cells[4].textContent}
                         \nChecklist Online: ${cells[5].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
