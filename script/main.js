@@ -154,12 +154,9 @@ function convertTableToText() {
 
     let rows = Array.from(document.querySelectorAll("#laporan-list tr"));
     rows.sort((a, b) => {
-        const shiftA = a.children[2].textContent.trim(); // Mengambil teks shift dari baris a
-        const shiftB = b.children[2].textContent.trim(); // Mengambil teks shift dari baris b
-
-        // Urutan shift
+        const shiftA = a.children[2] ? a.children[2].textContent.trim() : "";
+        const shiftB = b.children[2] ? b.children[2].textContent.trim() : "";
         const shifts = ['Pagi', 'Siang', 'Malam'];
-
         return shifts.indexOf(shiftA) - shifts.indexOf(shiftB);
     });
 
@@ -167,32 +164,32 @@ function convertTableToText() {
     let currentShift = "";
 
     rows.forEach(row => {
-        const shift = row.children[2].textContent.trim();
+        const shift = row.children[2] ? row.children[2].textContent.trim() : "";
         if (shift !== currentShift) {
             if (currentShift !== "") {
-                allDataText += "\n"; // Menambahkan pemisah antar shift
+                allDataText += "\n";
             }
-            allDataText += `*${shift}*\n\n`; // Menambahkan header untuk setiap shift
+            allDataText += `*${shift}*\n\n`;
             currentShift = shift;
         }
-
         const cells = row.querySelectorAll("td");
-        const dataText = `${cells[0].textContent} (${cells[1].textContent})
-                        \nTarget Penjualan: ${cells[3].textContent}
-                        \nTarget Testimoni: ${cells[4].textContent}
-                        \nChecklist Online: ${cells[5].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                        \nWaktu Datang: ${cells[6].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                        \nBukti SOP: ${cells[7].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                        \nBukti Sesuai: ${cells[8].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                        \nLembur: ${cells[9].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                        \nMinta Testimoni: ${cells[10].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                        \nBukti Testimoni: ${cells[11].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                        \nUpload Gform: ${cells[12].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}\n\n`;
-        
-        allDataText += dataText; // Menambahkan data karyawan ke dalam teks
+        if (cells.length >= 13) { // Pastikan ada cukup cells
+            const dataText = `${cells[0].textContent} (${cells[1].textContent})
+                            \nTarget Penjualan: ${cells[3].textContent}
+                            \nTarget Testimoni: ${cells[4].textContent}
+                            \nChecklist Online: ${cells[5].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nWaktu Datang: ${cells[6].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nBukti SOP: ${cells[7].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nBukti Sesuai: ${cells[8].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nLembur: ${cells[9].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nMinta Testimoni: ${cells[10].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nBukti Testimoni: ${cells[11].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nUpload Gform: ${cells[12].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}\n\n`;
+            allDataText += dataText;
+        }
     });
 
-    document.querySelector("#hasilKonversi").value = allDataText.trim(); // Menghapus spasi ekstra di akhir
+    document.querySelector("#hasilKonversi").value = allDataText.trim();
 }
 
 // Event Listener untuk Tombol Konversi
