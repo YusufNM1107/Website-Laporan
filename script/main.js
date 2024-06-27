@@ -147,8 +147,12 @@ const iconCross = '✗';
 
 // Fungsi Konversi Data Tabel ke Teks
 function convertTableToText() {
+    let now = new Date();
+    let dayStr = now.toLocaleDateString('id-ID', { weekday: 'long' });
+    let dateStr = now.toLocaleDateString('id-ID');
+    let timeStr = now.toLocaleTimeString('id-ID');
+
     let rows = Array.from(document.querySelectorAll("#laporan-list tr"));
-    // Mengurutkan baris berdasarkan shift
     rows.sort((a, b) => {
         const shiftA = a.children[2].textContent.trim(); // Mengambil teks shift dari baris a
         const shiftB = b.children[2].textContent.trim(); // Mengambil teks shift dari baris b
@@ -159,22 +163,21 @@ function convertTableToText() {
         return shifts.indexOf(shiftA) - shifts.indexOf(shiftB);
     });
 
-    let allDataText = "";
+    let allDataText = `*REPORT HARIAN SOLO* \n_Update :${dayStr}, ${timeStr} WIB, ${dateStr}_\n\n`;
     let currentShift = "";
 
     rows.forEach(row => {
         const shift = row.children[2].textContent.trim();
         if (shift !== currentShift) {
             if (currentShift !== "") {
-                allDataText += "\n"; 
+                allDataText += "\n"; // Menambahkan pemisah antar shift
             }
-            allDataText += `${shift}\n\n`;
+            allDataText += `*${shift}*\n\n`; // Menambahkan header untuk setiap shift
             currentShift = shift;
         }
 
         const cells = row.querySelectorAll("td");
-        const dataText = `Nama: ${cells[0].textContent}
-                        \nJabatan: ${cells[1].textContent}
+        const dataText = `${cells[0].textContent} (${cells[1].textContent})
                         \nTarget Penjualan: ${cells[3].textContent}
                         \nTarget Testimoni: ${cells[4].textContent}
                         \nChecklist Online: ${cells[5].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
@@ -184,9 +187,9 @@ function convertTableToText() {
                         \nLembur: ${cells[9].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
                         \nMinta Testimoni: ${cells[10].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
                         \nBukti Testimoni: ${cells[11].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                        \nUpload Gform: ${cells[12].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}`;
+                        \nUpload Gform: ${cells[12].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}\n\n`;
         
-        allDataText += dataText + "\n\n"; // Menambahkan dua baris baru untuk pemisah antar data
+        allDataText += dataText; // Menambahkan data karyawan ke dalam teks
     });
 
     document.querySelector("#hasilKonversi").value = allDataText.trim(); // Menghapus spasi ekstra di akhir
@@ -206,3 +209,13 @@ function copyTextFromTextarea() {
 
 // Event Listener untuk Tombol Copy
 document.querySelector("#tombolCopy").addEventListener("click", copyTextFromTextarea);
+
+// Kirim Text Area Ke whatsApp
+
+function kirimKeWhatsApp() {
+    let isiPesan = document.getElementById('hasilKonversi').value;
+    let encodedPesan = encodeURIComponent(isiPesan);
+    let whatsappUrl = `https://wa.me/?text=${encodedPesan}`;
+
+    window.open(whatsappUrl, '_blank');
+}
