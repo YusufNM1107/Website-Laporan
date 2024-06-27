@@ -169,14 +169,14 @@ function convertTableToText() {
             if (currentShift !== "") {
                 allDataText += "\n";
             }
-            allDataText += `*${shift}*\n\n`;
+            allDataText += `*${shift}*\n`;
             currentShift = shift;
         }
         const cells = row.querySelectorAll("td");
         if (cells.length >= 13) { // Pastikan ada cukup cells
-            const dataText = `${cells[0].textContent} (${cells[1].textContent})
-                            \nTarget Penjualan: ${cells[3].textContent}
-                            \nTarget Testimoni: ${cells[4].textContent}
+            const dataText = `\n\n${cells[0].textContent} (${cells[1].textContent})
+                            \nTarget Penjualan: ${cells[3].textContent}/40
+                            \nTarget Testimoni: ${cells[4].textContent}/4
                             \nMengisi Checklist Online Harian ${cells[5].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
                             \nDatang Tepat Waktu ${cells[6].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
                             \nMeng-Upload Bukti SOP Kebersihan ${cells[7].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
