@@ -177,14 +177,14 @@ function convertTableToText() {
             const dataText = `${cells[0].textContent} (${cells[1].textContent})
                             \nTarget Penjualan: ${cells[3].textContent}
                             \nTarget Testimoni: ${cells[4].textContent}
-                            \nChecklist Online: ${cells[5].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                            \nWaktu Datang: ${cells[6].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                            \nBukti SOP: ${cells[7].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                            \nBukti Sesuai: ${cells[8].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                            \nLembur: ${cells[9].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                            \nMinta Testimoni: ${cells[10].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                            \nBukti Testimoni: ${cells[11].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
-                            \nUpload Gform: ${cells[12].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}\n\n`;
+                            \nMengisi Checklist Online Harian ${cells[5].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nDatang Tepat Waktu ${cells[6].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nMeng-Upload Bukti SOP Kebersihan ${cells[7].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nBukti SOP Kebersihan Telah Sesuai (bukti yang di upload tidak menampilkan before/after) ${cells[8].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nLembur ${cells[9].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nMeminta Testimoni ${cells[10].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nBukti Testimoni yang di Upload sesuai ${cells[11].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
+                            \nMeng-Upload Checklistan Harian ke Google Form ${cells[12].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}\n\n`;
             allDataText += dataText;
         }
     });
