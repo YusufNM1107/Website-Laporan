@@ -15,7 +15,38 @@
     <!-- Remix Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 
+    <!-- Font -->
+    <link href='https://fonts.googleapis.com/css?family=Permanent+Marker:400' rel='stylesheet' type='text/css'>
 
+    <style>
+        /* Pastikan .table-responsive mengatur overflow */
+        .table-responsive {
+            overflow-x: auto; /* Memastikan scrollbar horizontal muncul jika diperlukan */
+        }
+
+        /* Gaya untuk scrollbar */
+        .table-responsive::-webkit-scrollbar {
+            height: 8px; /* Tinggi scrollbar */
+        }
+
+        .table-responsive::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Warna latar belakang track */
+        }
+
+        .table-responsive::-webkit-scrollbar-thumb {
+            background: #888; /* Warna thumb scrollbar */
+        }
+
+        .table-responsive::-webkit-scrollbar-thumb:hover {
+            background: #555; /* Warna thumb scrollbar saat di-hover */
+        }
+
+        @media (min-width: 768px) {
+            .table-responsive {
+                overflow-x: auto !important; /* Memunculkan scrollbar horizontal jika diperlukan */
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar bg-dark navbar-dark">
@@ -25,7 +56,7 @@
     </nav>
     <div class="container mt-5">
         <div class="text-center">
-            <h1 class="display-5 mb-5">Laporan Harian Lab Art</h1>
+            <h1 class="display-5 mb-5" style="font-family: Permanent Marker, sans-serif;">Laporan Harian Lab Art</h1>
         </div>
 
         <div class="main row justify-content-center">
@@ -112,47 +143,49 @@
                 </div>
             </form>
             <div class="col-10 col-md-8 mt-5">
-                <table class="table table-stripped table-dark">
-                    <thead>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Jabatan</th>
-                            <th>Shift</th>
-                            <th>Target Penjualan</th>
-                            <th>target Testimoni</th>
-                            <th>Checklist Online Harian</th>
-                            <th>Datang Tepat Waktu</th>
-                            <th>Upload Bukti SOP Kebersihan</th>
-                            <th>Bukti Sesuai</th>
-                            <th>Lembur</th>
-                            <th>Meminta Testimoni</th>
-                            <th>Bukti Testi Sesuai</th>
-                            <th>Upload Gform</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="laporan-list">
-                        <tr>
-                            <!-- <td>Iko</td>
-                            <td>Kasir Fulltime</td>
-                            <td>Malam</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td><i class="uil uil-check"></i></td>
-                            <td><i class="uil uil-check"></i></td>
-                            <td><i class="uil uil-check"></i></td>
-                            <td><i class="uil uil-check"></i></td>
-                            <td><i class="uil uil-times"></i></td>
-                            <td><i class="uil uil-check"></i></td>
-                            <td><i class="uil uil-check"></i></td>
-                            <td><i class="uil uil-check"></i></td>
-                            <td>
-                                <a href="#" class="btn btn-warning btn-sm edit">Edit</a>
-                                <a href="#" class="btn btn-danger btn-sm delete">Delete</a>
-                            </td>  -->
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-stripped table-dark">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Jabatan</th>
+                                <th>Shift</th>
+                                <th>Target Penjualan</th>
+                                <th>target Testimoni</th>
+                                <th>Checklist Online Harian</th>
+                                <th>Datang Tepat Waktu</th>
+                                <th>Upload Bukti SOP Kebersihan</th>
+                                <th>Bukti Sesuai</th>
+                                <th>Lembur</th>
+                                <th>Meminta Testimoni</th>
+                                <th>Bukti Testi Sesuai</th>
+                                <th>Upload Gform</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="laporan-list">
+                            <tr>
+                                <!-- <td>Iko</td>
+                                <td>Kasir Fulltime</td>
+                                <td>Malam</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td><i class="uil uil-check"></i></td>
+                                <td><i class="uil uil-check"></i></td>
+                                <td><i class="uil uil-check"></i></td>
+                                <td><i class="uil uil-check"></i></td>
+                                <td><i class="uil uil-times"></i></td>
+                                <td><i class="uil uil-check"></i></td>
+                                <td><i class="uil uil-check"></i></td>
+                                <td><i class="uil uil-check"></i></td>
+                                <td>
+                                    <a href="#" class="btn btn-warning btn-sm edit">Edit</a>
+                                    <a href="#" class="btn btn-danger btn-sm delete">Delete</a>
+                                </td>  -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="col-10 col-md-8 mt-3 mb-5">
                 <button type="button" class="btn btn-primary mb-3" id="tombolKonversi" onclick="convertTableToText()">Konversi Data</button>
