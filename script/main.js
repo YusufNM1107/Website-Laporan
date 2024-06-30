@@ -43,7 +43,9 @@ document.querySelector("#laporan-form").addEventListener("submit" , (e) => {
     const jabatan = document.querySelector("#jabatan").value;
     const shift = document.querySelector("#Shift").value;
     const targetPenjualan = document.querySelector("#Target_Penjualan").value;
+    const perTargetPenjualan = document.querySelector("#per_Target_Penjualan").value;
     const targetTestimoni = document.querySelector("#Target_Testimoni").value;
+    const perTargetTestimoni = document.querySelector("#per_Target_Testimoni").value;
     const checklistOnline = document.querySelector("#Checklist_Online").checked;
     const waktuDatang = document.querySelector("#Waktu_Datang").checked;
     const buktiSop = document.querySelector("#Bukti_Sop").checked;
@@ -66,8 +68,8 @@ document.querySelector("#laporan-form").addEventListener("submit" , (e) => {
                 <td>${Nama}</td>
                 <td>${jabatan}</td>
                 <td>${shift}</td>
-                <td>${targetPenjualan}</td>
-                <td>${targetTestimoni}</td>
+                <td>${targetPenjualan} / ${perTargetPenjualan}</td>
+                <td>${targetTestimoni} / ${perTargetTestimoni}</td>
                 <td>${checklistOnline ? '<i class="uil uil-check"></i>' : '<i class="uil uil-times"></i>'}</td>
                 <td>${waktuDatang ? '<i class="uil uil-check"></i>' : '<i class="uil uil-times"></i>'}</td>
                 <td>${buktiSop ? '<i class="uil uil-check"></i>' : '<i class="uil uil-times"></i>'}</td>
@@ -175,8 +177,8 @@ function convertTableToText() {
         const cells = row.querySelectorAll("td");
         if (cells.length >= 13) { // Pastikan ada cukup cells
             const dataText = `\n\n${cells[0].textContent} (${cells[1].textContent})
-                            \nTarget Penjualan: ${cells[3].textContent}/40
-                            \nTarget Testimoni: ${cells[4].textContent}/4
+                            \nTarget Penjualan: ${cells[3].textContent}
+                            \nTarget Testimoni: ${cells[4].textContent}
                             \nMengisi Checklist Online Harian ${cells[5].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
                             \nDatang Tepat Waktu ${cells[6].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
                             \nMeng-Upload Bukti SOP Kebersihan ${cells[7].querySelector('i').classList.contains('uil-check') ? iconCheck : iconCross}
